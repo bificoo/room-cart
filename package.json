@@ -1,7 +1,7 @@
 {
   "name": "asiayo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Asiayo Website",
   "private": true,
   "scripts": {
     "start": "webpack serve --open --mode=development",
@@ -9,7 +9,7 @@
     "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Peggy",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.18.10",

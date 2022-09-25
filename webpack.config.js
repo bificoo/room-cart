@@ -7,7 +7,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = (env, argv) => {
   const devMode = argv.mode === "development"
   return {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
       path: path.resolve(__dirname, './dist'),
       filename: 'static/js/[name].[hash].js',
@@ -53,10 +53,12 @@ module.exports = (env, argv) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js', ".css", ".scss"],
+      modules: ['src', 'node_modules']
     },
     plugins: [
       new HtmlWebpackPlugin({
         title: 'AsiaYo',
+        template: path.resolve(__dirname, './public/index.html'),
       }),
       ...(devMode ? [] : [new MiniCssExtractPlugin({
         filename: 'static/css/[name].[hash].css',

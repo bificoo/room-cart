@@ -27,6 +27,7 @@
       "esnext"
     ],
     "types": [
+      "jest",
       "react/next",
       "react-dom/next",
     ]

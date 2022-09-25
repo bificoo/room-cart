@@ -1,16 +1,9 @@
-import CustomInputNumber from "modules/CustomInputNumber"
+import RoomAllocation from "modules/RoomAllocation"
 
 const App = () => {
   return (
     <div>
-      <CustomInputNumber
-        name="test"
-        min={2}
-        max={10}
-        step={2}
-        onChange={e => console.log("change", e.target.name, e.target.value)}
-        onBlur={e => console.log("blur", e.target.name, e.target.value)}
-      />
+      <RoomAllocation guest={10} room={3} onChange={result => console.info(result)} />
     </div>
   )
 }

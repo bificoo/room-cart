@@ -21,11 +21,11 @@ type CustomInputNumberProps = {
 
 const CustomInputNumber = ({
   step = 1,
-  value: defalutValue = 0,
+  value: defaultValue = 0,
   ...props
 }: CustomInputNumberProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const [value, setValue] = useState(defalutValue)
+  const [value, setValue] = useState(defaultValue)
 
   const update = (callback: (currentValue?: number) => number | undefined) => {
     if (!inputRef.current) return
@@ -71,7 +71,6 @@ const CustomInputNumber = ({
     <div className={styled.wrapper}>
       <Button
         className={styled.button}
-        defaultValue={defalutValue}
         disabled={value === props.min}
         onClick={() => {
           update(currentValue => {
@@ -86,6 +85,7 @@ const CustomInputNumber = ({
         ref={inputRef}
         type="number"
         inputMode="numeric"
+        defaultValue={defaultValue}
         name={props.name}
         min={props.min}
         max={props.max}

@@ -9,9 +9,8 @@ module.exports = (env, argv) => {
   return {
     entry: path.resolve(__dirname, './src/index.ts'),
     output: {
-      filename: '[name].bundle.js',
       path: path.resolve(__dirname, './dist'),
-      clean: true,
+      filename: 'static/js/[name].[hash].js',
     },
     module: {
       rules: [
@@ -59,7 +58,9 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         title: 'AsiaYo',
       }),
-      ...(devMode ? [] : [new MiniCssExtractPlugin()]),
+      ...(devMode ? [] : [new MiniCssExtractPlugin({
+        filename: 'static/css/[name].[hash].css',
+      })]),
       new CleanWebpackPlugin(),
     ],
     devtool: 'inline-source-map',

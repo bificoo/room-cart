@@ -1,7 +1,7 @@
 import RoomAllocation from "modules/RoomAllocation"
 
 const App = () => {
-  const guest = 4
+  const guest = 10
   const room = 3
   return (
     <div>

@@ -1,4 +1,4 @@
-# Daily Drinks
+# Room Cart
 DEMO：https://bificoo.github.io/room-cart/
 
 ## Build Setup

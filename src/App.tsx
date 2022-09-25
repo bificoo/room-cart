@@ -1,7 +1,12 @@
-import styled from "./style.module.scss"
+import React from "react"
+import CustomInputNumber from "components/CustomInputNumber"
 
 const App = () => {
-  return <h1 className={styled.hello}>Hello, world!</h1>
+  return (
+    <div>
+      <CustomInputNumber />
+    </div>
+  )
 }
 
 export default App

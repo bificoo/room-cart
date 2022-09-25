@@ -1,10 +1,10 @@
 import React from "react"
-import ReactDOM from 'react-dom';
-import styled from './style.module.scss';
+import ReactDOM from "react-dom"
+import App from "./App"
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1 className={styled.hello}>Hello, world!</h1>
+    <App />
   </React.StrictMode>,
-  document.getElementById('root')
-);
+  document.getElementById("root"),
+)

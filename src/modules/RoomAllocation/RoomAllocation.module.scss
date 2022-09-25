@@ -1,7 +1,20 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 400px;
-  border: 1px dashed blue;
+  width: 300px;
+  box-shadow: 0 0 0 1.2px #ebecf0;
   padding: 20px;
+  font-size: 14px;
+
+  .info {
+    margin-bottom: 10px;
+  }
+
+  .left {
+    padding: 12px 20px;
+    background-color: #e4e5e6;
+    color: #000;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
 }

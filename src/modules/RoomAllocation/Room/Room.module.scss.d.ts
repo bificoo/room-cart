@@ -3,6 +3,9 @@
 interface CssExports {
   'adult': string;
   'child': string;
+  'description': string;
+  'info': string;
+  'title': string;
   'wrapper': string;
 }
 export const cssExports: CssExports;

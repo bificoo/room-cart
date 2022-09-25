@@ -1,9 +1,25 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
+
+  .info {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
   .adult, .child {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .title {
+      padding: 4px 0;
+
+      .description {
+        color: #999;
+      }
+    }
   }
 }

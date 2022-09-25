@@ -27,10 +27,10 @@ const RoomAllocation = (props: RoomAllocationProps) => {
   if (props.guest < props.room) return <div>人數不可少於房間數</div>
   return (
     <div className={styled.wrapper}>
-      <div>
+      <div className={styled.info}>
         住客人數：{props.guest}人/{props.room}房
       </div>
-      <div>尚未分配人數：{leftPeople}人</div>
+      <div className={styled.left}>尚未分配人數：{leftPeople}人</div>
       {roomOutputs.map((_, index) => {
         return (
           <Room

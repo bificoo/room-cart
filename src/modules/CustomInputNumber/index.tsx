@@ -1,6 +1,7 @@
 import Button from "components/Button"
 import Form from "components/Form"
 import React, { useRef, useState } from "react"
+import cx from "classnames"
 import styled from "./CustomInputNumber.module.scss"
 
 export type Event = {
@@ -74,7 +75,7 @@ const CustomInputNumber = ({
   return (
     <div className={styled.wrapper}>
       <Button
-        className={styled.button}
+        className={cx(styled.button, styled.left)}
         disabled={value === props.min}
         onClick={() => {
           update(currentValue => {
@@ -87,6 +88,7 @@ const CustomInputNumber = ({
       </Button>
       <Form.Input
         ref={inputRef}
+        className={styled.input}
         type="number"
         inputMode="numeric"
         defaultValue={defaultValue}
@@ -98,7 +100,7 @@ const CustomInputNumber = ({
         onChange={handleChange}
       />
       <Button
-        className={styled.button}
+        className={cx(styled.button, styled.right)}
         disabled={value === props.max}
         onClick={() => {
           update(currentValue => {

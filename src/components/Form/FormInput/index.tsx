@@ -45,20 +45,25 @@ const FormInput = React.forwardRef(function FormInput(
 
   return (
     <div
-      className={cx("component-input", styled.wrapper, {
-        [styled.entered]: entered,
-        [styled.disabled]: !!props.disabled,
-        [styled["read-only"]]: !!props.readOnly,
-        [styled.plaintext]: !!plaintext,
-        [styled.variant]: props.variant,
-      })}
+      className={cx(
+        "component-input",
+        styled.wrapper,
+        {
+          [styled.entered]: entered,
+          [styled.disabled]: !!props.disabled,
+          [styled["read-only"]]: !!props.readOnly,
+          [styled.plaintext]: !!plaintext,
+          [styled.variant]: props.variant,
+        },
+        className,
+      )}
       style={props.style}>
       <input
         {...props}
         ref={ref}
         type={type}
         id={attributes?.formId}
-        className={cx(styled.control, className)}
+        className={cx(styled.control)}
         onChange={e => {
           if (e.target.value.trim() === "") setEntered(false)
           else setEntered(true)

@@ -71,19 +71,19 @@
   }
 
   &.primary {
-    background: #0052cc;
+    background: #626e83;
     color: #fff;
     @extend %disabled;
     @extend %selected;
 
     &:not([disabled]):not(.selected) {
       &:hover {
-        background: #0065ff;
+        background: darken(#626e83, 10%);
         color: #fff;
       }
 
       &:active {
-        background: #0747a6;
+        background: darken(#626e83, 20%);
         color: #fff;
       }
     }

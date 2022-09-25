@@ -27,9 +27,12 @@ const Room = (props: RoomProps) => {
 
   return (
     <div className={styled.wrapper}>
-      <div>房間：{total}人</div>
+      <div className={styled.info}>房間：{total} 人</div>
       <div className={styled.adult}>
-        <div>大人</div>
+        <div className={styled.title}>
+          大人
+          <div className={styled.description}>年齡 20+</div>
+        </div>
         <div>
           <CustomInputNumber
             value={adult}
@@ -42,7 +45,7 @@ const Room = (props: RoomProps) => {
         </div>
       </div>
       <div className={styled.child}>
-        <div>小孩</div>
+        <div className={styled.title}>小孩</div>
         <div>
           <CustomInputNumber
             value={child}

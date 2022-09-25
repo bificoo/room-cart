@@ -7,7 +7,7 @@ const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/index.ts'),
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
@@ -16,26 +16,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/i,
-        loader: "babel-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.(t|j)sx?$/,
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.(sa|sc|c)ss$/i,
         use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          devMode ? { loader: "style-loader"} : MiniCssExtractPlugin.loader,
+          { loader: "css-modules-typescript-loader"},
           {
             loader: "css-loader",
             options: {
               importLoaders: 1,
             },
           },
-          "sass-loader",
+          { loader: "sass-loader"},
         ],
         exclude: /node_modules/,
       },
@@ -57,7 +53,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', ".css", ".scss"],
   },
   plugins: [
     new HtmlWebpackPlugin({

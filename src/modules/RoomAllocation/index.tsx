@@ -1,32 +1,52 @@
-import { useMemo } from "react"
-import Room from "./Room"
+import { useMemo, useState } from "react"
+import Room, { GuestArrangement } from "./Room"
 import styled from "./RoomAllocation.module.scss"
 
-type GuestArrangement = { adult: number; child: number }
 type RoomAllocationProps = {
   /** 住客人數 */
   guest: number
   /** 房間數量 */
   room: number
+  disabled: boolean
   onChange: (result: GuestArrangement[]) => void
 }
 
-const getLeftPeople = (guest: number, room: number) => {
-  if (guest - room < 0) return 0
-  else return guest - room
+const getLeftPeople = (guest: number, roomOutputs: GuestArrangement[]) => {
+  const sum = roomOutputs.reduce((sum, roomOtput) => {
+    return sum + roomOtput.adult + roomOtput.child
+  }, 0)
+  return guest - sum
 }
 
 const RoomAllocation = (props: RoomAllocationProps) => {
-  const leftPeople = getLeftPeople(props.guest, props.room)
+  const [roomOutputs, setRoomOutputs] = useState<GuestArrangement[]>(() =>
+    Array.from({ length: props.room }, () => ({ adult: 1, child: 0 })),
+  )
+  const leftPeople = getLeftPeople(props.guest, roomOutputs)
 
+  if (props.guest < props.room) return <div>人數不可少於房間數</div>
   return (
     <div className={styled.wrapper}>
       <div>
         住客人數：{props.guest}人/{props.room}房
       </div>
       <div>尚未分配人數：{leftPeople}人</div>
-      {Array.from({ length: props.room }, (v, i) => i).map((_, index) => {
-        return <Room key={index} max={leftPeople} />
+      {roomOutputs.map((_, index) => {
+        return (
+          <Room
+            key={index}
+            left={leftPeople}
+            disabled={props.disabled}
+            onChange={(output: GuestArrangement) => {
+              const newRoomOutputs = roomOutputs.map((roomOutput, roomOutputIndex) => {
+                if (index !== roomOutputIndex) return roomOutput
+                return output
+              })
+              setRoomOutputs(newRoomOutputs)
+              props.onChange(newRoomOutputs)
+            }}
+          />
+        )
       })}
     </div>
   )

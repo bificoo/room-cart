@@ -73,5 +73,8 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"]
   }
 }

@@ -3,6 +3,13 @@ import Form from "components/Form"
 import React, { useRef, useState } from "react"
 import styled from "./CustomInputNumber.module.scss"
 
+export type Event = {
+  target: {
+    name: string
+    value: string
+  }
+}
+
 type CustomInputNumberProps = {
   min?: number
   max?: number
@@ -10,12 +17,7 @@ type CustomInputNumberProps = {
   name?: string
   value?: number
   disabled?: boolean
-  onChange?: (e: {
-    target: {
-      name: string
-      value: string
-    }
-  }) => void
+  onChange?: (e: Event) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void
 }
 
@@ -30,10 +32,10 @@ const CustomInputNumber = ({
   const update = (callback: (currentValue?: number) => number | undefined) => {
     if (!inputRef.current) return
 
-    const currentValue = +inputRef.current.value || undefined
+    const currentValue = +inputRef.current.value
     const newValue = callback(currentValue)
 
-    if (newValue && newValue !== currentValue) {
+    if (typeof newValue !== "undefined" && newValue !== currentValue) {
       inputRef.current.value = String(newValue)
       setValue(newValue)
       props.onChange &&
@@ -64,6 +66,8 @@ const CustomInputNumber = ({
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (props.min && +e.target.value < props.min) return
+    if (props.max && +e.target.value > props.max) return
     props.onChange && props.onChange(e)
   }
 
@@ -74,7 +78,7 @@ const CustomInputNumber = ({
         disabled={value === props.min}
         onClick={() => {
           update(currentValue => {
-            if (!currentValue) return props.min
+            if (!currentValue && currentValue !== 0) return props.min
             const newValue = currentValue - step
             return props.min && newValue < props.min ? props.min : newValue
           })
@@ -98,7 +102,7 @@ const CustomInputNumber = ({
         disabled={value === props.max}
         onClick={() => {
           update(currentValue => {
-            if (!currentValue) return props.min
+            if (!currentValue && currentValue !== 0) return props.min
             const newValue = currentValue + step
             return props.max && newValue > props.max ? props.max : newValue
           })

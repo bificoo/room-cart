@@ -1,14 +1,15 @@
 const DefaultMaximumPeople = 4
 export const getMaximumPeople = (
-  currentPeopleNumber: number,
+  currentPeopleNumber: number, // 1
   {
-    total,
-    max,
+    total, // 1
+    left, // 3
   }: {
     total: number
-    max: number
+    left: number
   },
 ) => {
-  if (max < DefaultMaximumPeople) return max - total + currentPeopleNumber
-  else return DefaultMaximumPeople - total + currentPeopleNumber
+  const anotherPeopleNumber = total - currentPeopleNumber
+  if (total + left < DefaultMaximumPeople) return total + left - anotherPeopleNumber
+  else return DefaultMaximumPeople - anotherPeopleNumber
 }

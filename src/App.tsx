@@ -1,9 +1,16 @@
 import RoomAllocation from "modules/RoomAllocation"
 
 const App = () => {
+  const guest = 4
+  const room = 3
   return (
     <div>
-      <RoomAllocation guest={10} room={3} onChange={result => console.info(result)} />
+      <RoomAllocation
+        guest={guest}
+        room={room}
+        disabled={guest === room}
+        onChange={result => console.info(result)}
+      />
     </div>
   )
 }

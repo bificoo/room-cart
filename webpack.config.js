@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
     entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: 'static/js/[name].[hash].js',
+      filename: 'static/js/[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -61,11 +61,11 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, './public/index.html'),
       }),
       ...(devMode ? [] : [new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[hash].css',
+        filename: 'static/css/[name].[contenthash].css',
       })]),
       new CleanWebpackPlugin(),
     ],
-    devtool: 'inline-source-map',
+    devtool: devMode ? 'inline-source-map' : false,
     devServer: {
       static: path.resolve(__dirname, "./dist"),
       compress: true,
@@ -74,8 +74,24 @@ module.exports = (env, argv) => {
     },
     optimization: {
       splitChunks: {
-        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            name: 'vendor',
+            chunks: 'all',
+            test: /node_modules/,
+          },
+          common: {
+            name: 'common',
+            chunks: 'initial',
+            minChunks:  2,
+          }
+        }
       },
     },
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+  }
   }
 }

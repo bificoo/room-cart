@@ -7,6 +7,7 @@
     "start": "webpack serve --open --mode=development",
     "watch": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
+    "deploy": "gh-pages -d dist",
     "eslint": "eslint 'src/**/*.{js,ts,tsx}'",
     "test": "jest"
   },
@@ -45,6 +46,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
     "identity-obj-proxy": "^3.0.0",
@@ -75,6 +77,8 @@
     ]
   },
   "jest": {
-    "testMatch": ["<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"]
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"
+    ]
   }
 }
